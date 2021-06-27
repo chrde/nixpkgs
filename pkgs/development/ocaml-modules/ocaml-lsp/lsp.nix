@@ -1,9 +1,10 @@
 { buildDunePackage
 , stdlib-shims
 , ppx_yojson_conv_lib
-, ocaml-syntax-shims
+, pp
 , jsonrpc
 , omd
+, re
 , octavius
 , dune-build-info
 , uutf
@@ -22,15 +23,16 @@ buildDunePackage {
   # ocaml-lsp without messing with your opam switch, but nix should prevent
   # this type of problems without resorting to vendoring.
   preBuild = ''
-    rm -r ocaml-lsp-server/vendor/{octavius,uutf,ocaml-syntax-shims,omd,cmdliner}
+    rm -r ocaml-lsp-server/vendor/{octavius,uutf,omd,cmdliner}
   '';
 
   buildInputs = [
     stdlib-shims
     ppx_yojson_conv_lib
-    ocaml-syntax-shims
+    pp
     octavius
     uutf
+    re
     csexp
     dune-build-info
     omd
